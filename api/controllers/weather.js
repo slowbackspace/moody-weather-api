@@ -14,20 +14,25 @@ exports.getWeather = (req, res, next) => {
         error: _err.message
       });
     } else {
-      const timezoneName = dateUtils.getTimezoneForGeolocation(
-        _body.coord.lat,
-        _body.coord.lon
-      );
+      if (_res.statusCode == 200) {
+        const timezoneName = dateUtils.getTimezoneForGeolocation(
+          _body.coord.lat,
+          _body.coord.lon
+        );
 
-      const body = {
-        ..._body,
-        sys: {
-          ..._body.sys,
-          timezone: timezoneName
-        }
-      };
-      res.status(_res.statusCode);
-      res.send(body);
+        const body = {
+          ..._body,
+          sys: {
+            ..._body.sys,
+            timezone: timezoneName
+          }
+        };
+        res.status(_res.statusCode);
+        res.send(body);
+      } else {
+        res.status(_res.statusCode);
+        res.send(_body);
+      }
     }
   });
 };
