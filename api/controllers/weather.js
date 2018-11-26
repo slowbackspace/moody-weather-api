@@ -21,7 +21,7 @@ exports.getWeather = (req, res, next) => {
           timezone: dateUtils.getTimezoneForGeolocation(
             _body.coord.lat,
             _body.coord.lon
-          )
+          ) | ""
         }
       };
       res.status(_res.statusCode);
