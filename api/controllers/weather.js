@@ -14,14 +14,16 @@ exports.getWeather = (req, res, next) => {
         error: _err.message
       });
     } else {
+      const timezoneName = dateUtils.getTimezoneForGeolocation(
+        _body.coord.lat,
+        _body.coord.lon
+      );
+
       const body = {
         ..._body,
         sys: {
           ..._body.sys,
-          timezone: dateUtils.getTimezoneForGeolocation(
-            _body.coord.lat,
-            _body.coord.lon
-          ) | ""
+          timezone: timezoneName
         }
       };
       res.status(_res.statusCode);

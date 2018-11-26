@@ -5,7 +5,7 @@ function getTimezoneForGeolocation(lat, lon) {
     const timezone = tzlookup(lat, lon);
     return timezone;
   } catch(error) {
-    return false;
+    return "";
   }
 }
 
