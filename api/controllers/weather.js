@@ -10,7 +10,7 @@ exports.getWeather = (req, res, next) => {
   request.get(url, { json: true }, (_err, _res, _body) => {
     if (_err) {
       console.log(_err);
-      res.status(_res.statusCode).json({
+      res.status(500).json({
         error: _err.message
       });
     } else {
