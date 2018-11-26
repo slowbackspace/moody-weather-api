@@ -18,7 +18,7 @@ function buildURL(location, lang="en") {
   }
 
   url += "&lang=" + lang;
-  return url;
+  return encodeURI(url);
 }
 
 module.exports.buildURL = buildURL;
